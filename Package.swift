@@ -24,7 +24,8 @@ let package = Package(
     platforms: [.macOS(.v12)],
     products: [
         .executable(name: "swiftlint", targets: ["swiftlint"]),
-        .library(name: "SwiftLintFramework", targets: ["SwiftLintFramework"])
+        .library(name: "SwiftLintFramework", targets: ["SwiftLintFramework"]),
+        .plugin(name: "SwiftLintPlugin", targets: ["SwiftLintPlugin"])
     ],
     dependencies: [
         .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser.git", .upToNextMinor(from: "1.1.3")),
@@ -35,6 +36,13 @@ let package = Package(
         .package(url: "https://github.com/JohnSundell/CollectionConcurrencyKit.git", from: "0.2.0")
     ] + (addCryptoSwift ? [.package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.5.1"))] : []),
     targets: [
+        .plugin(
+            name: "SwiftLintPlugin",
+            capability: .buildTool(),
+            dependencies: [
+                .target(name: "swiftlint")
+            ]
+        ),
         .executableTarget(
             name: "swiftlint",
             dependencies: [
