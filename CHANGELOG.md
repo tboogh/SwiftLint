@@ -60,6 +60,12 @@
 * Include the configured `bind_identifier` in `self_binding` violation
   messages.  
   [JP Simard](https://github.com/jpims)
+* Rewrite `large_tuple` rule using SwiftSyntax, fixing false negatives.  
+  [Marcelo Fabri](https://github.com/marcelofabri)
+  
+* Add Swift Package Build Tool Plugin with support for Swift Packages 
+  and Xcode projects.
+  [Johannes Ebeling](https://github.com/technocidal) 
 
 #### Bug Fixes
 
